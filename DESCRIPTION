@@ -1,0 +1,17 @@
+Package: exquisite
+Title: Easily Squeeze URLs Using the TinyURL API
+Version: 0.0.0.9000
+Authors@R: 
+    person("JP", "Monteagudo", 
+    email = "jpmonteagudo2014@gmail.com", 
+    role = c("aut", "cre", "cph"),
+    comment = c(ORCID = "0009-0003-6465-6658"))
+Maintainer: JP Monteagudo <jpmonteagudo2014@gmail.com>
+Description: Exquisite allows users to squeeze or shorten long URLS into tiny ones using the TinyURL API. The package also allows users to update their exquisite new links by providing an alias,modifying tags,and setting an expiration date.
+License: AGPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports: 
+    httr2,
+    qrcode
