@@ -9,6 +9,7 @@
 #' @details
 #' This function manages the TinyURL API token by storing it in an `.Renviron` file in the working directory. It also ensures that `.Renviron` is ignored in `.gitignore` to prevent it from being committed to version control.
 #'
+#' - Note that only one token can be stored at a time. If there's an already existing token, it will be replaced by the new one. So if you've used an ishortn token before, it will be replaced by the new TinyURL token, causing your requests to the ishortn API to fail.
 #' - If a **token is provided**, it is stored in `.Renviron`, and the user is prompted to restart R for the changes to take effect.
 #' - If **no token is provided**, the function retrieves the stored token.
 #' - If no token is found, the function stops with an error.
@@ -31,23 +32,23 @@ manage_tinyurl_token <- function(token = NULL) {
   if (file.exists(renviron_path)) {
     readRenviron(renviron_path)
   }
+
+  # Retrieve the correct environment variable
   current_token <- Sys.getenv("TINYURL_API_TOKEN", unset = NA)
 
   # If a token is provided, store it in .Renviron
   if (!is.null(token)) {
     if (!is.na(current_token) && current_token == token) {
-      message("Token already stored in .Renviron.")
+      message("TinyURL token already stored in .Renviron.")
     } else {
-      # Write or append the token to .Renviron
+      # Write or update the token in .Renviron
       writeLines(sprintf("TINYURL_API_TOKEN=\"%s\"", token), renviron_path)
-      message("Token stored successfully in the working directory. Restart R to apply changes.")
+      message("TinyURL token stored successfully in the working directory. Restart R to apply changes.")
     }
 
     # Ensure .Renviron is ignored in .gitignore
     if (file.exists(gitignore_path)) {
       gitignore_lines <- readLines(gitignore_path)
-
-      # Check if '.Renviron' is already in .gitignore
       if (!any(grepl("^\\.Renviron$", gitignore_lines))) {
         writeLines("\n.Renviron", gitignore_path, append = TRUE)
         message("Added .Renviron to .gitignore to prevent accidental commits.")
@@ -55,14 +56,13 @@ manage_tinyurl_token <- function(token = NULL) {
         message(".Renviron is already in .gitignore.")
       }
     } else {
-      # If .gitignore does not exist, create it and add .Renviron
       writeLines(".Renviron", gitignore_path)
       message("Created .gitignore and added .Renviron to prevent accidental commits.")
     }
   } else {
-    # If no token provided, return the stored token
+    # If no token is provided, return the stored token
     if (is.na(current_token)) {
-      stop("No token found. Use manage_tinyurl_token(\"your_api_token\") to set it.")
+      stop("No TinyURL token found. Use manage_tinyurl_token(\"your_api_token\") to set it.")
     }
     invisible(current_token)
   }

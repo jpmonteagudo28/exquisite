@@ -27,7 +27,24 @@
 squeeze_url <- function(long_url,
                         domain = "tinyurl.com",
                         alias = NULL,
-                        expires_at = NULL){
+                        description = NULL,    # ishortn arguments
+                        expires_at = NULL,
+                        disable_clicks = NULL, # ishortn arguments
+                        disable_date = NULL,   # ishortn arguments
+                        tags = NULL){          # ishortn arguments
+
+  stopifnot(is.character(long_url),
+            !is_tiny_url(long_url),
+            is.character(domain),
+            is_tiny_domain(domain) || is_shortn_domain(domain), # ishortn links are also supported
+            is.null(alias) | (is.character(alias) & nchar(alias) >= 5),
+            is.null(description) | (is.character(description)),
+            is.null(expires_at) | (is.character(expires_at)),
+            is.null(disable_clicks) | (is.numerical(disable_clicks)),
+            is.null(disable_date) | (is.character(disable_date)),
+            is.null(tags) | (is.character(tags))
+            )
+
 
   api_url <- "https://api.tinyurl.com/create"
 
@@ -42,6 +59,11 @@ squeeze_url <- function(long_url,
   # Only add alias and expiration if provided
   if (!is.null(alias)) body$alias <- alias
   if (!is.null(expires_at)) body$expires_at <- expires_at
+  if(!is.null(description)) body$description <- description
+  if(!is.null(disable_clicks)) body$disable_clicks <- disable_clicks
+  if(!is.null(disable_date)) body$disable_date <- disable_date
+  if(!is.null(tags)) body$tags <- tags
+
 
   # Create the request
   response <- httr2::request(api_url) |>

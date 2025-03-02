@@ -10,7 +10,7 @@ status](https://www.r-pkg.org/badges/version/exquisite)](https://CRAN.R-project.
 ![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
 [![](https://codecov.io/gh/jpmonteagudo28/exquisite/branch/main/graph/badge.svg)](https://app.codecov.io/gh/jpmonteagudo28/exquisite)
-![Static Badge](https://img.shields.io/badge/web-related-%23035949)
+![Static Badge](https://img.shields.io/badge/web-api-%23035949)
 [![](https://cranlogs.r-pkg.org/badges/exquisite)](https://cran.r-project.org/package=exquisite)
 <!-- badges: end -->
 
@@ -26,7 +26,7 @@ You can install the development version of exquisite from
 devtools::install_github("jpmonteagudo28/exquisite")
 ```
 
-Or you can download it from CRAN:
+Or you can download the released version from CRAN:
 
 ``` r
 #install.packages("exquisite")
