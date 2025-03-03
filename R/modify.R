@@ -37,15 +37,16 @@
 #' @seealso \code{\link{squeeze_url}} for creating new TinyURLs.
 #'
 #' @export
-recast_tinyurl <- function(domain,
-                          alias = NULL,
-                          new_domain = NULL,
-                          new_alias = NULL,
-                          new_stats = NULL,
-                          new_tags = NULL,
-                          new_expires_at = NULL,
-                          new_description = NULL,
-                          password = NULL) {
+recast <- function(domain,
+                   alias = NULL,
+                   new_domain = NULL,
+                   new_alias = NULL,
+                   new_stats = NULL,
+                   new_tags = NULL,
+                   new_expires_at = NULL,
+                   new_description = NULL,
+                   password = NULL
+                   ){
 
   api_url <- "https://api.tinyurl.com/update"
   api_token <- manage_tinyurl_token()

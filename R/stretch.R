@@ -1,4 +1,4 @@
-#' Update the Long URL of an Existing TinyURL Shortened Link
+#' Update the Long URL of an Existing TinyURL Link
 #'
 #' This premium function allows you to **update the long URL** associated with an existing shortened URL (alias) on TinyURL. It requires a valid API token, which is retrieved from the `.Renviron` file. This function is **not available to free users**; a paid TinyURL account is required to use this feature.
 #'

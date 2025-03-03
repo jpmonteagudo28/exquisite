@@ -54,7 +54,7 @@ squeeze_url <- function(long_url,
     api_url <- "https://api.tinyurl.com/create"
     api_token <- manage_tinyurl_token()
   } else {
-    api_url <- "https://api.ishortn.ink/api/v1/links"
+    api_url <- "https://ishortn.ink/api/v1/links"
     api_token <- manage_ishortn_token()
   }
 

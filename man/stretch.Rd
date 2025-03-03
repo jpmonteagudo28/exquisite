@@ -2,7 +2,7 @@
 % Please edit documentation in R/stretch.R
 \name{stretch}
 \alias{stretch}
-\title{Update the Long URL of an Existing TinyURL Shortened Link}
+\title{Update the Long URL of an Existing TinyURL Link}
 \usage{
 stretch(long_url, domain = "tinyurl.com", alias = NULL)
 }
