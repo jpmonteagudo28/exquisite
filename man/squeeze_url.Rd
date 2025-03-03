@@ -2,30 +2,50 @@
 % Please edit documentation in R/make_tiny.R
 \name{squeeze_url}
 \alias{squeeze_url}
-\title{Squeeze Long URLs into Tiny URLs}
+\title{Squeeze Long URLs into short URLs}
 \usage{
-squeeze_url(long_url, domain = "tinyurl.com", alias = NULL, expires_at = NULL)
+squeeze_url(
+  long_url,
+  domain = "tinyurl.com",
+  alias = NULL,
+  description = NULL,
+  expires_at = NULL,
+  disable_clicks = NULL,
+  disable_date = NULL,
+  tags = NULL,
+  password = NULL
+)
 }
 \arguments{
 \item{long_url}{A character string representing the URL to shorten.}
 
-\item{domain}{A character string specifying the domain for the shortened URL. Can be either "tinyurl.com" or "tiny.one". Default is "tinyurl.com". Note: Custom domains are not available for free accounts.}
+\item{domain}{A character string specifying the domain for the shortened URL. Can be either "tinyurl.com", "tiny.one", or "ishortn.ink". Default is "tinyurl.com". Note: Custom domains are not available for free accounts in TinyURL or ishortn.ink.}
 
 \item{alias}{A character string specifying an alias for the shortened URL. The alias must be at least 5 characters long and contain only numbers or letters. Default is \code{NULL}.}
 
+\item{description}{A character string specifying a description for the shortened URL. Default is \code{NULL}.}
+
 \item{expires_at}{A character string specifying the expiration date for the shortened URL. This is available only for paid users and should be in the format "YYYY-MM-DD". Default is \code{NULL}, meaning no expiration date.}
+
+\item{disable_clicks}{A numeric value specifying the number of clicks after which the 'ishortn.ink' URL will be disabled. Default is \code{NULL}, meaning no limit on the number of clicks.}
+
+\item{disable_date}{A character string specifying the date after which the 'ishortn.ink' URL will be disabled. This should be in the format "YYYY-MM-DD". Default is \code{NULL}, meaning no expiration date.}
+
+\item{tags}{A character string specifying tags for the shortened URL. Default is \code{NULL}.}
+
+\item{password}{A character string specifying a password to protect the ishortn link. Default is \code{NULL}. This feature is only available to paid users of ishortn.}
 }
 \value{
 A character string representing the shortened URL.
 }
 \description{
-This function shortens long URLs using the TinyURL API. It requires an API token, which is stored in the \code{.Renviron} file, and allows you to create short URLs with optional aliases and expiration dates. The function supports two domains: \code{tinyurl.com} and \code{tiny.one}. Aliases must be at least 5 characters long and contain only alphanumeric characters. Expiration dates are only available for paid users.
+This function shortens long URLs using the TinyURL and ishortn API. It requires an API token, which is stored in the \code{.Renviron} file, and allows you to create short URLs with optional aliases and expiration dates. The function supports three domains: \code{tinyurl.com},\code{tiny.one}, and \code{ishortn.ink}. Aliases must be at least 5 characters long and contain only alphanumeric characters. Expiration dates are only available for paid TinyURL users. ishortn free tier users are able to set expiration rules.
 }
 \details{
-The function uses the TinyURL API to shorten the provided \code{long_url}. The API token is managed and retrieved automatically from the \code{.Renviron} file. Aliases must be at least 5 characters and contain only alphanumeric characters (no special characters). If an alias is provided, it will be used as the custom part of the shortened URL. Expiration dates are available only to paid users and are not supported for free users.
+The function uses the TinyURL or ishortn API to shorten the provided \code{long_url}. The API token is managed and retrieved automatically from the \code{.Renviron} file. Aliases must be at least 5 characters and contain only alphanumeric characters (no special characters). If an alias is provided, it will be used as the custom part of the shortened URL. Expiration dates are available only to paid users and are not supported for free users.
 }
 \note{
-The API token must be set up and stored securely in the \code{.Renviron} file before using this function. You can set the token with the \code{manage_tinyurl_token()} function.
+The API token must be set up and stored securely in the \code{.Renviron} file before using this function. You can set the token with the \code{manage_tinyurl_token()} or \code{manage_ishortn_token} function.
 }
 \examples{
 \donttest{

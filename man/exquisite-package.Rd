@@ -6,6 +6,8 @@
 \alias{exquisite-package}
 \title{exquisite: Easily Squeeze URLs Using the TinyURL API}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 Exquisite allows users to squeeze or shorten long URLS into tiny ones using the TinyURL API. The package also allows users to update their exquisite new links by providing an alias,modifying tags,and setting an expiration date.
 }
 \author{

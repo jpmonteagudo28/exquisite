@@ -12,7 +12,8 @@ recast_tinyurl(
   new_stats = NULL,
   new_tags = NULL,
   new_expires_at = NULL,
-  new_description = NULL
+  new_description = NULL,
+  password = NULL
 )
 }
 \arguments{
@@ -31,6 +32,8 @@ recast_tinyurl(
 \item{new_expires_at}{A character string specifying the expiration time for the TinyURL link in ISO 8601 duration format (e.g., \code{"P10DT4H"} for 10 days and 4 hours). This feature is available only for paid accounts. Default is \code{NULL}.}
 
 \item{new_description}{A character string providing a new description for the TinyURL link. Default is \code{NULL}.}
+
+\item{password}{A character string specifying a password to protect the TinyURL link. Default is \code{NULL}.}
 }
 \value{
 A character string representing the updated shortened URL.

@@ -10,7 +10,7 @@
 #' @param new_tags A character vector of tags associated with the shortened URL. Tags help categorize and organize links. Default is `NULL`.
 #' @param new_expires_at A character string specifying the expiration time for the TinyURL link in ISO 8601 duration format (e.g., `"P10DT4H"` for 10 days and 4 hours). This feature is available only for paid accounts. Default is `NULL`.
 #' @param new_description A character string providing a new description for the TinyURL link. Default is `NULL`.
-#'
+#' @param password A character string specifying a password to protect the TinyURL link. Default is `NULL`.
 #' @return A character string representing the updated shortened URL.
 #'
 #' @details
@@ -44,7 +44,8 @@ recast_tinyurl <- function(domain,
                           new_stats = NULL,
                           new_tags = NULL,
                           new_expires_at = NULL,
-                          new_description = NULL) {
+                          new_description = NULL,
+                          password = NULL) {
 
   api_url <- "https://api.tinyurl.com/update"
   api_token <- manage_tinyurl_token()
@@ -62,6 +63,7 @@ recast_tinyurl <- function(domain,
   if (!is.null(new_tags)) body$new_tags <- new_tags
   if (!is.null(new_expires_at)) body$new_expires_at <- new_expires_at
   if (!is.null(new_description)) body$new_description <- new_description
+  if(!is.null(password)) body$password <- password
 
   # Perform the PATCH request
   response <- httr2::request(api_url) |>

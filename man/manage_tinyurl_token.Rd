@@ -18,6 +18,7 @@ This function securely stores and retrieves the TinyURL API token from an \code{
 \details{
 This function manages the TinyURL API token by storing it in an \code{.Renviron} file in the working directory. It also ensures that \code{.Renviron} is ignored in \code{.gitignore} to prevent it from being committed to version control.
 \itemize{
+\item Note that only one token can be stored at a time. If there's an already existing token, it will be replaced by the new one. So if you've used an ishortn token before, it will be replaced by the new TinyURL token, causing your requests to the ishortn API to fail.
 \item If a \strong{token is provided}, it is stored in \code{.Renviron}, and the user is prompted to restart R for the changes to take effect.
 \item If \strong{no token is provided}, the function retrieves the stored token.
 \item If no token is found, the function stops with an error.
