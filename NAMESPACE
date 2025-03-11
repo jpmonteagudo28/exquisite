@@ -2,6 +2,7 @@
 
 export(manage_ishortn_token)
 export(manage_tinyurl_token)
+export(recall)
 export(recast)
 export(squeeze_url)
 export(stretch)

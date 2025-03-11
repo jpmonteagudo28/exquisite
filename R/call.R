@@ -1,3 +1,34 @@
+#' Retrieve Short and Long URL from TinyURL or iShortn
+#'
+#' This function retrieves the **shortened URL** and the **original long URL** associated with an alias from either TinyURL or iShortn. The function works dynamically based on the provided domain (`tinyurl.com` or `ishortn.ink`).
+#'
+#' @param domain A character string specifying the domain to use for retrieving the shortened URL. It can either be `"tinyurl.com"` or `"ishortn.ink"`. Defaults to `"tinyurl.com"`.
+#' @param alias A character string specifying the alias of the shortened URL. The alias must be at least 5 characters long.
+#'
+#' @details
+#' The function sends a **GET request** to either the TinyURL or iShortn API, depending on the specified domain. If the domain is `"tinyurl.com"`, it constructs a URL for the TinyURL API and retrieves both the short URL (`tiny_url`) and long URL (`url`). For `"ishortn.ink"`, it retrieves the short URL (`shortLink`) and long URL (`url`).
+#'
+#' If the `alias` is not provided or is invalid, the function will stop with an error.
+#'
+#' @return A list containing two elements:
+#' \itemize{
+#'   \item `short_url`: The shortened URL.
+#'   \item `long_url`: The original long URL.
+#' }
+#'
+#' @examples
+#' \dontrun{
+#' # Retrieve the short and long URL from TinyURL
+#' tinyurl_info <- recall(domain = "tinyurl.com", alias = "myalias")
+#' print(tinyurl_info)
+#'
+#' # Retrieve the short and long URL from iShortn
+#' ishortn_info <- recall(domain = "ishortn.ink", alias = "myalias")
+#' print(ishortn_info)
+#' }
+#'
+#' @export
+
 recall <- function(domain = "tinyurl.com",
                    alias = NULL
                    ){
